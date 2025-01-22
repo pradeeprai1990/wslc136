@@ -1,6 +1,7 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { CountContext } from '../../context/MainContext'
 
 export default function Product() {
     let [product, setProduct] = useState([])
@@ -121,6 +122,20 @@ export default function Product() {
 
 
 function ProductItems({ pdata }) {
+    let {cart,setCart}=useContext(CountContext)
+    
+
+    let addtoCart=()=>{
+            let cartObj={
+                title:pdata.title,
+                image:pdata.thumbnail,
+                price:pdata.price,
+                id:pdata.id,
+                qty:1
+            }
+        let oldData=[...cart,cartObj]    
+        setCart(oldData)
+    }
     return (
         <div className="group relative shadow-lg">
             <img src={pdata.thumbnail} alt="Front of men&#039;s Basic Tee in black." className="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80" />
@@ -133,6 +148,7 @@ function ProductItems({ pdata }) {
                         </Link>
                     </h3>
                     <p className="mt-1 text-sm text-gray-500">{pdata.category}</p>
+                    <button onClick={addtoCart} className='p-2 bg-red-500 text-white'>Add to Cart</button>
                 </div>
                 <p className="text-sm font-medium text-gray-900">${pdata.price}</p>
             </div>

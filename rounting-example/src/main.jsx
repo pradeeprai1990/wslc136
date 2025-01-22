@@ -9,6 +9,7 @@ import Login from './components/pages/Login'
 import Product from './components/pages/Product'
 import ProductDetails from './components/pages/ProductDetails'
 import MainContext from './context/MainContext'
+import Cart from './components/pages/Cart'
 
 let route=createBrowserRouter([
   {
@@ -30,6 +31,10 @@ let route=createBrowserRouter([
       {
         path:"/product-details/:pid",
         element:<ProductDetails/>
+      },
+      {
+        path:"/cart",
+        element:<Cart/>
       }
     ]
   },
