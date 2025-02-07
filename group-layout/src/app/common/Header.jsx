@@ -1,10 +1,39 @@
 "use client"
 import Link from 'next/link'
-import React from 'react'
-
+import React, { useState } from 'react'
+import { Button, Modal } from "flowbite-react";
 export default function Header() {
+    const [openModal, setOpenModal] = useState(false);
     return (
         <div>
+
+
+<Modal show={openModal} onClose={() => setOpenModal(false)}>
+        <Modal.Header>Terms of Service</Modal.Header>
+        <Modal.Body>
+          <div className="space-y-6">
+            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+              With less than a month to go before the European Union enacts new consumer privacy laws for its citizens,
+              companies around the world are updating their terms of service agreements to comply.
+            </p>
+            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+              The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant
+              to ensure a common set of data rights in the European Union. It requires organizations to notify users as
+              soon as possible of high-risk data breaches that could personally affect them.
+            </p>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={() => setOpenModal(false)}>I accept</Button>
+          <Button color="gray" onClick={() => setOpenModal(false)}>
+            Decline
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+
+
+
             <div>
 
 
@@ -36,6 +65,9 @@ export default function Header() {
                                 </li>
                                 <li>
                                     <Link href={'/register'} className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">register</Link>
+                                </li>
+                                <li>
+                                    <button onClick={()=>setOpenModal(true)}>Enquire Now</button>
                                 </li>
                             </ul>
                         </div>
